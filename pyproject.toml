@@ -1,0 +1,6 @@
+[project]
+name = "knn-cpp"
+version = "0.1.0"
+description = "Python script to generate 2d datapoints for testing"
+requires-python = ">=3.12"
+dependencies = []
