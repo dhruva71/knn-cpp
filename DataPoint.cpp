@@ -8,7 +8,6 @@
 #include <cmath>
 #include <ostream>
 #include <valarray>
-#include <ranges>
 
 // Calculates Euclidean distance between DataPoint a and Datapoint B
 // throws an error if the number of dimensions of the features do not match
@@ -44,7 +43,6 @@ std::vector<DataPoint> DataPoint::findKClosestPoints(const DataPoint& datapoint,
     for (const DataPoint& point : dataPoints)
     {
         double distance = calculateEuclideanDistance(datapoint, point);
-        // auto neighbour = Neighbour{datapoint, distance};
         neighbours.emplace_back(point, distance);
     }
 
