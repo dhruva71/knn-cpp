@@ -13,6 +13,11 @@ struct DataPoint {
     std::vector<float> features;
     std::string label;
 
+    DataPoint()
+    {
+        this->features = std::vector<float>();
+        this->label = "";
+    }
     DataPoint(std::vector<float> features, std::string label)
     {
         this->features = std::move(features);
@@ -20,6 +25,7 @@ struct DataPoint {
     }
 
     static double calculateEuclideanDistance(const DataPoint &a, const DataPoint &b);
+    static std::vector<DataPoint> findKClosestPoints(const DataPoint& datapoint, const std::vector<DataPoint> &dataPoints, int k);
 };
 
 
