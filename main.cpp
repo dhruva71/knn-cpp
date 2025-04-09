@@ -25,5 +25,9 @@ int main()
     {
         std::cout << neighbour.toString() << std::endl;
     }
+
+    auto majorityLabel = DataPoint::findMajorityLabel(closestNeighbours);
+    std::cout << "New point to have label: " << majorityLabel << std::endl;
+
     return 0;
 }

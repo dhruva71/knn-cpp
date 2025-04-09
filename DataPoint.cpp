@@ -9,6 +9,7 @@
 #include <ostream>
 #include <valarray>
 #include <sstream>
+#include <map>
 
 std::string DataPoint::toString() const
 {
@@ -51,7 +52,8 @@ double DataPoint::calculateEuclideanDistance(const DataPoint& a, const DataPoint
 
 // Find the nearest k neighbours. Calculates distance to all points.
 // TODO: optimize this further
-std::vector<DataPoint> DataPoint::findKClosestPoints(const DataPoint& datapoint, const std::vector<DataPoint>& dataPoints, int k)
+std::vector<DataPoint> DataPoint::findKClosestPoints(const DataPoint& datapoint,
+                                                     const std::vector<DataPoint>& dataPoints, int k)
 {
     using Neighbour = std::pair<DataPoint, double>;
     std::vector<Neighbour> neighbours;
@@ -64,7 +66,7 @@ std::vector<DataPoint> DataPoint::findKClosestPoints(const DataPoint& datapoint,
     }
 
     // sort by distance
-    std::ranges::sort(neighbours, [](const Neighbour& a, const Neighbour& b) {return a.second < b.second;});
+    std::ranges::sort(neighbours, [](const Neighbour& a, const Neighbour& b) { return a.second < b.second; });
 
     // pick only the first k entries and return them
     neighbours.resize(k);
@@ -74,4 +76,31 @@ std::vector<DataPoint> DataPoint::findKClosestPoints(const DataPoint& datapoint,
         closestPoints.push_back(neighbours[i].first);
     }
     return closestPoints;
+}
+
+std::string DataPoint::findMajorityLabel(const std::vector<DataPoint>& neighbours)
+{
+    if (neighbours.empty())
+    {
+        throw std::invalid_argument("No neighbours found");
+    }
+
+    std::map<std::string, int> labelCounts;
+    for (const DataPoint& point : neighbours)
+    {
+        labelCounts[point.label]++;
+    }
+
+    // find the label with the highest count
+    std::string majorityLabel;
+    int majorityLabelCount = 0;
+    for (const auto& pair : labelCounts)
+    {
+        if (pair.second > majorityLabelCount)
+        {
+            majorityLabelCount = pair.second;
+            majorityLabel = pair.first;
+        }
+    }
+    return majorityLabel;
 }

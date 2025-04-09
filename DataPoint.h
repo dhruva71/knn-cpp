@@ -26,6 +26,7 @@ struct DataPoint {
     std::string toString() const;
     static double calculateEuclideanDistance(const DataPoint &a, const DataPoint &b);
     static std::vector<DataPoint> findKClosestPoints(const DataPoint& datapoint, const std::vector<DataPoint> &dataPoints, int k);
+    static std::string findMajorityLabel(const std::vector<DataPoint> &neighbours);
 };
 
 
