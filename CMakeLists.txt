@@ -5,4 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(knn_cpp main.cpp
         DataPoint.cpp
-        DataPoint.h)
+        DataPoint.h
+        loadcsv.h
+        loadcsv.cpp)

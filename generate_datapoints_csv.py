@@ -4,18 +4,19 @@ import random
 num_points = input('Enter the number of points to generate data for: ')
 
 # x and y values will lie between this range
-range_min = -20
+variance = 20
 range_max = 20
 labels = ["game", "movie"]
-output_file_name = "datapoints.csv"
+output_file_name = "build/datapoints.csv"
 
 datapoints = []
 for i in range(int(num_points)):
-    x = random.random() * range_max - range_min
-    y = random.random() * range_max - range_min
+    x = random.random() * range_max - variance
+    y = random.random() * range_max - variance
+    z = random.random() * range_max - variance
 
     random_label = random.choice(labels)
-    datapoints.append([random_label, x, y])
+    datapoints.append([random_label, x, y, z])
 
 # write the list to a csv
 with open(output_file_name, 'w', newline='') as csvfile:
