@@ -8,6 +8,23 @@
 #include <cmath>
 #include <ostream>
 #include <valarray>
+#include <sstream>
+
+std::string DataPoint::toString() const
+{
+    std::ostringstream oss;
+    oss << "DataPoint(label: \"" << label << "\", features: [";
+    for (size_t i = 0; i < features.size(); ++i)
+    {
+        oss << features[i];
+        if (i != features.size() - 1)
+        {
+            oss << ", ";
+        }
+    }
+    oss << "])";
+    return oss.str();
+}
 
 // Calculates Euclidean distance between DataPoint a and Datapoint B
 // throws an error if the number of dimensions of the features do not match

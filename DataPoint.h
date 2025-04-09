@@ -23,7 +23,7 @@ struct DataPoint {
         this->features = std::move(features);
         this->label = std::move(label);
     }
-
+    std::string toString() const;
     static double calculateEuclideanDistance(const DataPoint &a, const DataPoint &b);
     static std::vector<DataPoint> findKClosestPoints(const DataPoint& datapoint, const std::vector<DataPoint> &dataPoints, int k);
 };

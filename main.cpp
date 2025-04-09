@@ -21,11 +21,9 @@ int main()
     auto dataPoint = new DataPoint({0.0f, 0.0f}, "movie");
     auto closestNeighbours = DataPoint::findKClosestPoints(*dataPoint, dataPoints, 3);
     std::cout << "Printing closest neighbours" << std::endl;
-    for (auto neighbour : closestNeighbours)
+    for (const auto& neighbour : closestNeighbours)
     {
-        std::cout << "Features: " << neighbour.features[0] << ", " << neighbour.features[1] << "; Label: " << neighbour.
-            label << std::endl;
+        std::cout << neighbour.toString() << std::endl;
     }
-
     return 0;
 }
